@@ -8,7 +8,7 @@
         <img src="/ico.png" class="w-10 sm:w-[50px] object-cover" alt="Logo" />
       </div>
 
-      <!-- Search bar (visible on md+) -->
+      <!-- Search bar (visible on md) -->
       <div class="hidden md:flex flex-1 justify-center mt-3 md:mt-0">
         <div class="relative w-full max-w-md">
           <input type="text" placeholder="Search products..."
@@ -32,14 +32,23 @@
           <!-- Cart -->
           <!-- Cart -->
           <li class="relative">
-            <div class="group relative">
-              <!-- Shopping Cart Icon -->
-              <ShoppingCart class="w-5 h-5 text-gray-600 hover:text-[#FF5400]" stroke-width="2.0" />
-              <span class="absolute -top-2 -right-2 bg-[#FF5400] text-white text-xs px-1 rounded-full">2</span>
+            <div class="group relative md:cursor-pointer">
 
-              <!-- Cart Summary -->
-              <div
-                class="absolute right-0 mt-3 w-72 bg-white shadow-lg rounded-lg p-4 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-300 origin-top-right z-50 pointer-events-none group-hover:pointer-events-auto">
+              <!-- Icon with mobile click handler -->
+              <button @click="toggleCartDropdown" class="md:pointer-events-none relative">
+                <ShoppingCart class="w-5 h-5 text-gray-600 hover:text-[#FF5400]" stroke-width="2.0" />
+                <span class="absolute -top-2 -right-2 bg-[#FF5400] text-white text-xs px-1 rounded-full">2</span>
+              </button>
+
+              <!-- Cart Dropdown -->
+              <div class="absolute right-0 mt-3 w-72 bg-white shadow-lg rounded-lg p-4 transition-all duration-300 origin-top-right z-50"
+                :class="{
+                  'md:opacity-0 md:scale-95 md:group-hover:opacity-100 md:group-hover:scale-100 md:pointer-events-none md:group-hover:pointer-events-auto':
+                    true,
+                  'opacity-100 scale-100 pointer-events-auto': showCartDropdown,
+                  'opacity-0 scale-95 pointer-events-none': !showCartDropdown
+                }">
+                <!-- Cart Contents -->
                 <h3 class="text-base font-semibold text-gray-600 mb-4">Cart Summary</h3>
                 <ul class="space-y-4 max-h-60 overflow-y-auto">
                   <li v-for="(item, index) in topItems" :key="item.id || index"
@@ -112,6 +121,16 @@ import image1 from '/images/airpodes/1.webp';
 import image2 from '/images/airpodes/2.webp';
 import image3 from '/images/airpodes/3.webp';
 import { RouterLink } from 'vue-router';
+
+const showCartDropdown = ref(false);
+
+const toggleCartDropdown = () => {
+  showCartDropdown.value = !showCartDropdown.value;
+};
+
+const closeCartDropdown = () => {
+  showCartDropdown.value = false;
+};
 
 const topItems = ref([
   { id: 1, name: 'Apple AirPods Pro', price: 249.99, image: image1 },

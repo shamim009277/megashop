@@ -295,15 +295,15 @@
 
                             <!-- Submit Button -->
                             <div class="text-right">
-                                <button
-                                    class="bg-[#FF5252] hover:opacity-80 text-white font-semibold px-6 py-2 rounded-lg transition-all text-sm shadow-sm">
+                                <button class="bg-[#FF5252] hover:opacity-80 text-white font-semibold px-6 py-2 rounded-lg transition-all text-sm shadow-sm">
                                     Submit Review
                                 </button>
                             </div>
                         </div>
-
                     </div>
                 </div>
+
+                <RelatedProduct />
             </div>
         </div>
     </div>
@@ -312,6 +312,7 @@
 <script setup>
 import { ref } from 'vue'
 import VueInnerImageZoom from 'vue-inner-image-zoom'
+import RelatedProduct from '@/components/product/RelatedProduct.vue'
 
 const stock = ref(10)
 const wishlist = ref(false)

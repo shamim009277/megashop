@@ -2,6 +2,7 @@
     <div>
         <footer>
             <div class="container mx-auto py-8 px-4">
+                <hr class="my-4 border-gray-300" />
                 <div class="grid gap-12 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                     <div v-for="item in items" :key="item"
                         class="flex flex-col items-center justify-center px-2 py-4 group">
@@ -120,7 +121,6 @@
 import BottomStrip from './BottomStrip.vue';
 import { Truck, SquareArrowLeft, Gift, Headset, FileLock2, Facebook, Twitter, Instagram, Mail } from 'lucide-vue-next';
 import 'leaflet/dist/leaflet.css'
-
 
 const items = [
     {
