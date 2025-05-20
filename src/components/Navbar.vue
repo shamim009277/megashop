@@ -114,96 +114,62 @@
     </div>
     <hr class="my-2 border-gray-300" />
 
+    <div class="container mx-auto px-4 sm:px-6 lg:px-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 relative py-4">
 
-    <div class="container mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between relative">
-      <!-- All Categories Button with Hover -->
-      <div class="relative group">
-        <!-- Button -->
-        <button class="flex items-center w-60 justify-between px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded">
-          <!-- Left Icon and Text -->
-          <div class="flex items-center space-x-2">
-            <!-- Menu Icon -->
-            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        <!-- All Categories Button with Hover -->
+        <div class="relative w-full md:w-auto" @mouseleave="isOpen = false">
+          <!-- Button -->
+          <button @click="toggleDropdown"
+            class="flex items-center justify-between w-full md:w-60 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded">
+            <div class="flex items-center space-x-2">
+              <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <span>All Categories</span>
+            </div>
+
+            <svg class="w-4 h-4 text-gray-500 transform transition-transform duration-300"
+              :class="{ 'rotate-90': isOpen }" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
-            <span>All Categories</span>
+          </button>
+
+          <!-- Dropdown -->
+          <div
+            class="absolute left-0 mt-2 w-full md:w-60 bg-white border border-gray-200 rounded shadow-md z-50 transition duration-300"
+            :class="{
+              'opacity-100 visible': isOpen,
+              'opacity-0 invisible': !isOpen,
+            }" @mouseenter="isOpen = true">
+            <ul class="py-2 text-sm text-gray-700 max-h-80 overflow-y-auto">
+              <li v-for="(category, idx) in categories" :key="idx"
+                class="flex items-center px-4 py-2 hover:bg-gray-100 space-x-2">
+                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+                </svg>
+                <span>{{ category }}</span>
+              </li>
+            </ul>
           </div>
+        </div>
 
-          <!-- Right Arrow Icon (rotates on hover) -->
-          <svg class="w-4 h-4 text-gray-500 transform transition-transform duration-300 group-hover:rotate-90"
-            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-
-        <!-- Dropdown Content -->
-        <div class="absolute left-0 mt-2 w-60 bg-white border border-gray-200 rounded shadow-md opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-300 z-50">
-          <ul class="py-2 text-sm text-gray-700">
-            <li class="flex items-center px-4 py-2 hover:bg-gray-100 space-x-2">
-              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-              </svg>
-              <span>Electronics</span>
-            </li>
-            <li class="flex items-center px-4 py-2 hover:bg-gray-100 space-x-2">
-              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-              </svg>
-              <span>Fashion</span>
-            </li>
-            <li class="flex items-center px-4 py-2 hover:bg-gray-100 space-x-2">
-              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-              </svg>
-              <span>Toys</span>
-            </li>
-            <li class="flex items-center px-4 py-2 hover:bg-gray-100 space-x-2">
-              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-              </svg>
-              <span>Beauty & Makeup</span>
-            </li>
-            <li class="flex items-center px-4 py-2 hover:bg-gray-100 space-x-2">
-              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-              </svg>
-              <span>Foods</span>
-            </li>
-            <li class="flex items-center px-4 py-2 hover:bg-gray-100 space-x-2">
-              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-              </svg>
-              <span>Shoes</span>
-            </li>
-            <li class="flex items-center px-4 py-2 hover:bg-gray-100 space-x-2">
-              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-              </svg>
-              <span>Ferniture</span>
-            </li>
-            <li class="flex items-center px-4 py-2 hover:bg-gray-100 space-x-2">
-              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
-              </svg>
-              <span>Sports</span>
+        <!-- Other Navigation Links -->
+        <div class="w-full md:w-auto">
+          <ul class="flex flex-wrap justify-center md:justify-end gap-3 sm:gap-5 text-base text-gray-600">
+            <li v-for="(item, index) in menuItems" :key="index">
+              <RouterLink :to="item.link"
+                class="relative text-gray-700 hover:text-[#FF5400] font-medium transition duration-300 before:absolute before:-bottom-1 before:left-0 before:h-0.5 before:w-0 before:bg-[#FF5400] hover:before:w-full before:transition-all before:duration-300">
+                {{ item.label }}
+              </RouterLink>
             </li>
           </ul>
         </div>
-      </div>
 
-
-      <!-- Other Navigation Links -->
-      <div class="text-base text-gray-600">
-        <ul class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 py-4">
-          <li v-for="(item, index) in menuItems" :key="index">
-            <RouterLink :to="item.link"
-              class="relative text-gray-700 hover:text-[#FF5400] font-medium transition duration-300 before:absolute before:-bottom-1 before:left-0 before:h-0.5 before:w-0 before:bg-[#FF5400] hover:before:w-full before:transition-all before:duration-300">
-              {{ item.label }}
-            </RouterLink>
-          </li>
-        </ul>
       </div>
     </div>
+
 
   </nav>
 </template>
@@ -231,6 +197,23 @@ const topItems = ref([
   { id: 2, name: 'Apple AirPods Max', price: 549.99, image: image2 },
   { id: 3, name: 'Apple AirPods (3rd Gen)', price: 179.99, image: image3 }
 ]);
+
+const isOpen = ref(false)
+
+const toggleDropdown = () => {
+  isOpen.value = !isOpen.value
+}
+
+const categories = [
+  'Electronics',
+  'Fashion',
+  'Toys',
+  'Beauty & Makeup',
+  'Foods',
+  'Shoes',
+  'Ferniture',
+  'Sports',
+]
 
 const removeItem = (index) => {
   topItems.value.splice(index, 1);
