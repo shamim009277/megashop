@@ -156,7 +156,7 @@
         </div>
 
         <!-- Other Navigation Links -->
-        <div class="w-full md:w-auto">
+        <div class="hidden w-full md:w-auto md:flex">
           <ul class="flex flex-wrap justify-center md:justify-end gap-3 sm:gap-5 text-base text-gray-600">
             <li v-for="(item, index) in menuItems" :key="index">
               <RouterLink :to="item.link"
